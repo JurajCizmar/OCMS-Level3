@@ -93,5 +93,7 @@
     "App": "App",
     "Blueprints": "Blueprints",
     "App Blueprint": "App Blueprint",
-    "Theme Blueprint": "Theme Blueprint"
+    "Theme Blueprint": "Theme Blueprint",
+    "Reset Structure": "Reset Structure",
+    "Structure has been reset": "Structure has been reset"
 }

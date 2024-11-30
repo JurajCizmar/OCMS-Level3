@@ -6,8 +6,10 @@
     "license": "proprietary",
     "require": {
         "php": "^8.0.2",
-        "october/rain": "^3.7",
-        "laravel/framework": "^9.0"
+        "october/rain": "^3.6",
+        "laravel/framework": "^9.0",
+        "october/all": "^3.6",
+        "symfony/yaml": "^6.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5|^9.0"
@@ -45,5 +47,12 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "octobercms": {
+            "type": "composer",
+            "url": "https://gateway.octobercms.com",
+            "only": ["october/*", "*-plugin", "*-theme"]
+        }
+    }
 }

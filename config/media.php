@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'auto_rename' => env('MEDIA_AUTO_RENAME', null),
+    'auto_rename' => null,
 
    /*
     |--------------------------------------------------------------------------

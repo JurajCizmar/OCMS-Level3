@@ -1,7 +1,7 @@
 <?php namespace System\Console;
 
-use Composer\Script\Event;
 use Composer\Installer\PackageEvent;
+use Composer\Script\Event;
 
 /**
  * ComposerScript is a collection of composer script logic
@@ -16,20 +16,76 @@ class ComposerScript
      */
     public static function postAutoloadDump(Event $event)
     {
-        // passthru('php artisan package:discover');
+        self::clearMeta();
+
+        static::passthruArtisan('package:discover');
     }
 
     /**
-     * postUpdateCmd
+     * postUpdateCmd occurs after the update command has been executed, or after
+     * the install command has been executed without a lock file present.
      */
     public static function postUpdateCmd(Event $event)
     {
+        static::passthruArtisan('october:util set build');
+
+        static::passthruArtisan('october:mirror --composer');
     }
 
     /**
-     * prePackageUninstall
+     * prePackageUninstall occurs before a package is uninstalled
      */
     public static function prePackageUninstall(PackageEvent $event)
     {
+        $package = $event->getOperation()->getPackage();
+
+        if (self::isOfType($package, 'plugin')) {
+            static::passthruArtisan("plugin:remove {$package} --composer");
+        }
+    }
+
+    /**
+     * isOfType checks if a package is a plugin or theme
+     *
+     * rainlab-vanilla-theme dev-master, theme -> true
+     */
+    protected static function isOfType(string $package, string $type): bool
+    {
+        if (substr($package, -strlen('-'.$type)) === (string) '-'.$type) {
+            return true;
+        }
+
+        if (strpos($package, '-'.$type.'-') !== false) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * clearMeta purges meta files (discovered package cache, etc) to prevent errors
+     */
+    protected static function clearMeta()
+    {
+        $metaFiles = [
+            'storage/framework/packages.php',
+            'storage/framework/classes.php',
+            'storage/framework/services.php',
+            'storage/cms/manifest.php'
+        ];
+
+        foreach ($metaFiles as $filePath) {
+            if (file_exists($packagesMeta = __DIR__ . '/../../../'.$filePath)) {
+                @unlink($packagesMeta);
+            }
+        }
+    }
+
+    /**
+     * passthruArtisan
+     */
+    protected static function passthruArtisan($command, &$errCode = null)
+    {
+        passthru('"'.PHP_BINARY.'" artisan ' .$command);
     }
 }
