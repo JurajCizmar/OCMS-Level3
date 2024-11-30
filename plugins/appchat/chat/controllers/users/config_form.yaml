@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: User
+
+# Model Form Field configuration
+form: $/appchat/chat/models/user/fields.yaml
+
+# Model Class name
+modelClass: AppChat\Chat\Models\User
+
+# Default redirect location
+defaultRedirect: appchat/chat/users
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: appchat/chat/users/update/:id
+    redirectClose: appchat/chat/users
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: appchat/chat/users
+    redirectClose: appchat/chat/users
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title
