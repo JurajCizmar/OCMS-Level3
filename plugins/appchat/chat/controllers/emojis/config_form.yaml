@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Emoji
+
+# Model Form Field configuration
+form: $/appchat/chat/models/emoji/fields.yaml
+
+# Model Class name
+modelClass: AppChat\Chat\Models\Emoji
+
+# Default redirect location
+defaultRedirect: appchat/chat/emojis
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: appchat/chat/emojis/update/:id
+    redirectClose: appchat/chat/emojis
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: appchat/chat/emojis
+    redirectClose: appchat/chat/emojis
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

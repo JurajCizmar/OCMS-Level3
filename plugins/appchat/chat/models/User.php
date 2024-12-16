@@ -1,6 +1,9 @@
 <?php namespace AppChat\Chat\Models;
 
 use Model;
+use AppChat\Chat\Models\Chat;
+use AppChat\Chat\Models\Message;
+use AppChat\Chat\Models\ChatUserPivot;
 
 /**
  * User Model
@@ -10,6 +13,7 @@ use Model;
 class User extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Hashable;
 
     /**
      * @var string table name
@@ -17,7 +21,28 @@ class User extends Model
     public $table = 'appchat_chat_users';
 
     /**
+     * @var array List of attributes to hash.
+     */
+    protected $hashable = ['password'];
+
+
+    public $belongsToMany = [
+        'chats' => [ 
+            Chat::class, 
+            'table' => 'appchat_chat_chat_user_pivots',
+            'pivotModel' => ChatUserPivot::class
+        ]
+    ];
+
+    public $hasMany = [
+        'messages' => Message::class,
+    ];
+
+    /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'username' => 'required|unique:appchat_chat_users',
+        'password' => 'required:create|min:8'
+    ];
 }

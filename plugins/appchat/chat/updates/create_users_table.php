@@ -18,6 +18,9 @@ return new class extends Migration
     {
         Schema::create('appchat_chat_users', function(Blueprint $table) {
             $table->id();
+            $table->string('username')->nullable();
+            $table->string('password');
+            $table->string('token')->nullable();
             $table->timestamps();
         });
     }
