@@ -1,15 +1,15 @@
 <?php namespace AppChat\Chat\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use AppChat\Chat\Models\User;
+use AppUser\User\Models\User;
 use AppChat\Chat\Models\Message;
 use AppChat\Chat\Models\Chat;
 use AppChat\Chat\Models\Emoji;
 use AppChat\Chat\Models\ChatUserPivot;
-use AppChat\Chat\Http\Resources\UserResource;
+use AppUser\User\Http\Resources\UserResource;
 use AppChat\Chat\Http\Resources\MessageResource;
 use AppChat\Chat\Http\Resources\EmojiResource;
-use AppChat\Chat\Classes\Services\UserService;
+use AppUser\User\Classes\Services\UserService;
 use AppChat\Chat\Classes\Services\ChatService; 
 use Illuminate\Http\Request;
 use Input;
@@ -26,10 +26,9 @@ class ChatController extends Controller
         return UserResource::collection($users);
     }
 
-    // REVIEW - Tip - Nemusíš písať "Request $request", hodikde môžeš zavolať "request()" a dostaneš tie isté dáta
-    public function createNewChat(Request $request)
+    public function createNewChat()
     {
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
 
         $chatWithUser = input('id');
         $secondUser = User::where('id', $chatWithUser)->firstOrFail();
@@ -52,9 +51,9 @@ class ChatController extends Controller
         return response()->json(['message' => "Chat created successfully"]);
     }
 
-    public function showUserTheirChats(Request $request)
+    public function showUserTheirChats()
     {
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chats = $currentUser->chats;
 
         $collection = new Collection();
@@ -73,12 +72,12 @@ class ChatController extends Controller
         return $collection;
     }
 
-    public function nameChat(Request $request)
+    public function nameChat()
     {
         $chatId = input('chat_id');
         $chatName = input('chat_name');
 
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chat = ChatService::isUserInChat($chatId, $currentUser);
 
         $chat->name = $chatName;
@@ -87,12 +86,12 @@ class ChatController extends Controller
         return response()->json(['message' => "Chat renamed successfully"]);
     }
 
-    public function writeMessageToChat(Request $request)
+    public function writeMessageToChat()
     {
         $chatId = input('chat_id');
         $usersMessage = input('message');
 
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chat = ChatService::isUserInChat($chatId, $currentUser);
 
         $message = Message::create([
@@ -104,30 +103,30 @@ class ChatController extends Controller
         return response()->json(['message' => "Message sent"]);
     }
 
-    public function showMyChat(Request $request)
+    public function showMyChat()
     {
         $chatId = input('chat_id');
 
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chat = ChatService::isUserInChat($chatId, $currentUser);
         $messages = Message::where('chat_id', $chat->id)->orderBy('created_at', 'desc')->get();
 
         return MessageResource::collection($messages);
     }
 
-    public function showEmojis(Request $request)
+    public function showEmojis()
     {
         $emojis = Emoji::all();
         return EmojiResource::collection($emojis);
     }
 
-    public function reactToMessage(Request $request)
+    public function reactToMessage()
     {
         $chatId = input('chat_id');
         $reactToId = input('message_id');
         $reaction = input('reaction');
 
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chat = ChatService::isUserInChat($chatId, $currentUser);
         $emoji = Emoji::where('name', $reaction)->firstOrFail();
         $message = ChatService::isMessageInChat($reactToId, $chat);   
@@ -138,13 +137,13 @@ class ChatController extends Controller
         return response()->json(['message' => "Emoji sent"]);
     }
 
-    public function replyToMessage(Request $request)
+    public function replyToMessage()
     {
         $chatId = input('chat_id');
         $replyToId = input('message_id');
         $replyText = input('reply');
 
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chat = ChatService::isUserInChat($chatId, $currentUser); 
         $message = ChatService::isMessageInChat($replyToId, $chat);   
 
@@ -158,10 +157,10 @@ class ChatController extends Controller
         return response()->json(['message' => "Reply sent"]);
     }
 
-    public function sendAttachment(Request $request)
+    public function sendAttachment()
     {
         $chatId = input('chat_id');
-        $currentUser = UserService::getUserFromRequest($request);
+        $currentUser = UserService::getUserFromRequest(request());
         $chat = ChatService::isUserInChat($chatId, $currentUser);
 
         $message = Message::create([
@@ -185,8 +184,11 @@ class ChatController extends Controller
         return response()->json(['message' => "Every chat deleted successfully"]);
     }
 
-    public function test()
-    {
-
-    }
+    // public function test()
+    // {
+    //     // $auth_header = request()->header('Authorization');
+    //     $auth_header = request()->bearerToken();
+        
+    //     return $auth_header;
+    // }
 }

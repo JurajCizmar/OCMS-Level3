@@ -1,11 +1,11 @@
-<?php namespace AppChat\Chat\Http\Controllers;
+<?php namespace AppUser\User\Http\Controllers;
 
-use AppChat\Chat\Models\User;
+use AppUser\User\Models\User;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use AppChat\Chat\Classes\Services\UserService;
-use AppChat\Chat\Http\Resources\UserResource;
+use AppUser\User\Classes\Services\UserService;
+use AppUser\User\Http\Resources\UserResource;
 use October\Rain\Exception\ApplicationException as ApplicationException;
 
 class UserController extends Controller
@@ -17,9 +17,8 @@ class UserController extends Controller
         $user->password = input('password');
         $user->token = base64_encode(random_bytes(64));
         $user->save();
-        
-        // REVIEW - Tip - stačí aj "return ['message' => "You have been successfully registered"]" je to to isté, lebo OCMS automaticky rozpozná že je to json
-        return response()->json(['message' => "You have been successfully registered"]);
+
+        return ['message' => "You have been successfully registered"];
     }
 
     public function login()
@@ -55,7 +54,8 @@ class UserController extends Controller
             
             $currentUser->token = NULL;
             $currentUser->save();
-            return response()->json(['message' => "You've been logged out"]);
+
+            return ['message' => "You've been logged out"];
         }
     }
 

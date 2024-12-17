@@ -1,4 +1,4 @@
-<?php namespace AppChat\Chat\Http\Resources;
+<?php namespace AppUser\User\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

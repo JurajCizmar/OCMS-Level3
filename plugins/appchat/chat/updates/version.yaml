@@ -1,7 +1,6 @@
 v1.0.1: 
   - First version of Chat
   - create_chats_table.php
-  - create_users_table.php
   - create_chat_user_pivots_table.php
   - create_emoji_table.php
   - create_messages_table.php

@@ -6,11 +6,12 @@ columns:
     id:
         label: ID
         searchable: true
-    name:
-        label: Chat Name
-        type: text
+    username:
+        label: Username
         searchable: true
     created_at:
         label: Created
         type: datetime
-        format: Y-m-d H:i
+    updated_at:
+        label: Last Updated
+        type: datetime

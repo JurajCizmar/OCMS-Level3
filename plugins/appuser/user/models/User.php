@@ -1,4 +1,4 @@
-<?php namespace AppChat\Chat\Models;
+<?php namespace AppUser\User\Models;
 
 use Model;
 use AppChat\Chat\Models\Chat;
@@ -18,7 +18,7 @@ class User extends Model
     /**
      * @var string table name
      */
-    public $table = 'appchat_chat_users';
+    public $table = 'appuser_user_users';
 
     /**
      * @var array List of attributes to hash.
@@ -42,7 +42,7 @@ class User extends Model
      * @var array rules for validation
      */
     public $rules = [
-        'username' => 'required|unique:appchat_chat_users',
+        'username' => 'required|unique:appuser_user_users',
         'password' => 'required:create|min:8'
     ];
 }

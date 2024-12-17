@@ -1,4 +1,4 @@
-<?php namespace AppChat\Chat\Controllers;
+<?php namespace AppUser\User\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -28,7 +28,7 @@ class Users extends Controller
     /**
      * @var array required permissions
      */
-    public $requiredPermissions = ['appchat.chat.users'];
+    public $requiredPermissions = ['appuser.user.users'];
 
     /**
      * __construct the controller
@@ -37,6 +37,6 @@ class Users extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('AppChat.Chat', 'chat', 'users');
+        BackendMenu::setContext('AppUser.User', 'user', 'users');
     }
 }

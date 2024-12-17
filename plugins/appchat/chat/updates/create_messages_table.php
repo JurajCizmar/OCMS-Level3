@@ -4,7 +4,7 @@ use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 use AppChat\Chat\Models\Chat;
-use AppChat\Chat\Models\User;
+use AppUser\User\Models\User;
 use AppChat\Chat\Models\Emoji;
 use AppChat\Chat\Models\Message;
 

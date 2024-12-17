@@ -1,4 +1,4 @@
-<?php namespace AppChat\Chat\Updates;
+<?php namespace AppUser\User\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('appchat_chat_users', function(Blueprint $table) {
+        Schema::create('appuser_user_users', function(Blueprint $table) {
             $table->id();
             $table->string('username')->nullable();
             $table->string('password');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appchat_chat_users');
+        Schema::dropIfExists('appuser_user_users');
     }
 };

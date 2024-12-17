@@ -3,7 +3,7 @@
 use Model;
 use October\Rain\Database\Pivot;
 use AppChat\Chat\Models\Chat;
-use AppChat\Chat\Models\User;
+use AppUser\User\Models\User;
 
 /**
  * ChatUserPivot Model

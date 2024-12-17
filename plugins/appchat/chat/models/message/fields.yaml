@@ -6,3 +6,18 @@ fields:
     id:
         label: ID
         disabled: true
+    message:
+        label: Message
+        type: text
+    user:
+        label: Sender
+        type: relation
+        nameFrom: username
+    chat:
+        label: Chat
+        type: relation
+        nameFrom: name
+    attachment:
+        label: Attachment
+        type: fileupload
+        mode: file

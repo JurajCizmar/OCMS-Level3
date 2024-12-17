@@ -6,3 +6,21 @@ columns:
     id:
         label: ID
         searchable: true
+    message:
+        label: Message
+        type: text
+    user:
+        label: Sender
+        relation: user
+        select: username
+    chat:
+        label: Chat Name
+        relation: chat
+        select: name
+    parent_id:
+        label: Reply To
+        relation: parentMessage
+        select: message
+    attachment:
+        label: Attachment
+        type: text

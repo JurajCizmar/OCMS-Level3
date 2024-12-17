@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= Backend::url('appchat/chat/users') ?>">Users</a></li>
+        <li class="breadcrumb-item"><a href="<?= Backend::url('appuser/user/users') ?>">Users</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= e($this->pageTitle) ?></li>
     </ol>
 <?php Block::endPut() ?>
@@ -18,33 +18,24 @@
                 <button
                     type="submit"
                     data-request="onSave"
-                    data-request-data="{ redirect: 0 }"
+                    data-request-message="<?= __("Creating :name...", ['name' => $formRecordName]) ?>"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-request-message="<?= __("Saving :name...", ['name' => $formRecordName]) ?>"
                     class="btn btn-primary">
-                    <?= __("Save") ?>
+                    <?= __("Create") ?>
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="{ close: 1 }"
-                    data-browser-redirect-back
+                    data-request-message="<?= __("Creating :name...", ['name' => $formRecordName]) ?>"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-request-message="<?= __("Saving :name...", ['name' => $formRecordName]) ?>"
                     class="btn btn-default">
-                    <?= __("Save & Close") ?>
-                </button>
-                <button
-                    type="button"
-                    class="oc-icon-delete btn-icon danger pull-right"
-                    data-request="onDelete"
-                    data-request-message="<?= __("Deleting :name...", ['name' => $formRecordName]) ?>"
-                    data-request-confirm="<?= __("Delete this record?") ?>">
+                    <?= __("Create & Close") ?>
                 </button>
                 <span class="btn-text">
                     <span class="button-separator"><?= __("or") ?></span>
                     <a
-                        href="<?= Backend::url('appchat/chat/users') ?>"
+                        href="<?= Backend::url('appuser/user/users') ?>"
                         class="btn btn-link p-0">
                         <?= __("Cancel") ?>
                     </a>
@@ -61,7 +52,7 @@
     </p>
     <p>
         <a
-            href="<?= Backend::url('appchat/chat/users') ?>"
+            href="<?= Backend::url('appuser/user/users') ?>"
             class="btn btn-default">
             <?= __("Return to List") ?>
         </a>

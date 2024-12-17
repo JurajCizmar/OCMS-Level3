@@ -1,9 +1,9 @@
-<?php namespace AppChat\Chat\Http\Middleware;
+<?php namespace AppUser\User\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppChat\Chat\Classes\Services\UserService;
+use AppUser\User\Classes\Services\UserService;
 use October\Rain\Exception\NotFoundException as NotFoundException;
 
 class UserMiddleware
@@ -15,7 +15,7 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = UserService::getTokenFromAuth($request);
+        $token = UserService::getTokenFromAuth();
 
         if (!$token) {
 
@@ -23,8 +23,7 @@ class UserMiddleware
 
         } 
         else {
-            // REVIEW - Tu nepotrebuješ pripisovať tohto $user keďže ho nikde nevyužiješ
-            $user = UserService::getUserByToken($token);
+            UserService::getUserByToken($token);
         }
 
         return $next($request);

@@ -6,25 +6,25 @@
 name: User
 
 # Model Form Field configuration
-form: $/appchat/chat/models/user/fields.yaml
+form: $/appuser/user/models/user/fields.yaml
 
 # Model Class name
-modelClass: AppChat\Chat\Models\User
+modelClass: AppUser\User\Models\User
 
 # Default redirect location
-defaultRedirect: appchat/chat/users
+defaultRedirect: appuser/user/users
 
 # Create page
 create:
     title: backend::lang.form.create_title
-    redirect: appchat/chat/users/update/:id
-    redirectClose: appchat/chat/users
+    redirect: appuser/user/users/update/:id
+    redirectClose: appuser/user/users
 
 # Update page
 update:
     title: backend::lang.form.update_title
-    redirect: appchat/chat/users
-    redirectClose: appchat/chat/users
+    redirect: appuser/user/users
+    redirectClose: appuser/user/users
 
 # Preview page
 preview:

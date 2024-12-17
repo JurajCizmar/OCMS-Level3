@@ -2,7 +2,7 @@
 
 use Model;
 use AppChat\Chat\Models\Chat;
-use AppChat\Chat\Models\User;
+use AppUser\User\Models\User;
 use AppChat\Chat\Models\Emoji;
 use System\Models\File;
 

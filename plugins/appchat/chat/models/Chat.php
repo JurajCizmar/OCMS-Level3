@@ -2,7 +2,7 @@
 
 use Model;
 use AppChat\Chat\Models\Message;
-use AppChat\Chat\Models\User;
+use AppUser\User\Models\User;
 use AppChat\Chat\Models\ChatUserPivot;
 
 /**

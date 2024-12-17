@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/appchat/chat/models/user/columns.yaml
+list: $/appuser/user/models/user/columns.yaml
 
 # Model Class name
-modelClass: AppChat\Chat\Models\User
+modelClass: AppUser\User\Models\User
 
 # List Title
 title: Manage Users
 
 # Link URL for each record
-recordUrl: appchat/chat/users/update/:id
+recordUrl: appuser/user/users/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
