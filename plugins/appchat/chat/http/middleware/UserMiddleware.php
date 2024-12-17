@@ -23,6 +23,7 @@ class UserMiddleware
 
         } 
         else {
+            // REVIEW - Tu nepotrebuješ pripisovať tohto $user keďže ho nikde nevyužiješ
             $user = UserService::getUserByToken($token);
         }
 

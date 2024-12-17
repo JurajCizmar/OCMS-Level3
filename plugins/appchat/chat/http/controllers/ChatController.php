@@ -26,6 +26,7 @@ class ChatController extends Controller
         return UserResource::collection($users);
     }
 
+    // REVIEW - Tip - Nemusíš písať "Request $request", hodikde môžeš zavolať "request()" a dostaneš tie isté dáta
     public function createNewChat(Request $request)
     {
         $currentUser = UserService::getUserFromRequest($request);

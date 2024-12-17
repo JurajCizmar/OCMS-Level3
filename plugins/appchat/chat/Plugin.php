@@ -8,7 +8,7 @@ use System\Classes\PluginBase;
  *
  * @link https://docs.octobercms.com/3.x/extend/system/plugins.html
  */
-class Plugin extends PluginBase
+class Plugin extends PluginBase // REVIEW - Tip - Môžeš odstrániť funkcie kde nič nie je / kde máš "return [];" aby to bolo prehľadnejšie
 {
     /**
      * pluginDetails about this plugin.

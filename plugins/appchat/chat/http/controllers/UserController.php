@@ -18,6 +18,7 @@ class UserController extends Controller
         $user->token = base64_encode(random_bytes(64));
         $user->save();
         
+        // REVIEW - Tip - stačí aj "return ['message' => "You have been successfully registered"]" je to to isté, lebo OCMS automaticky rozpozná že je to json
         return response()->json(['message' => "You have been successfully registered"]);
     }
 

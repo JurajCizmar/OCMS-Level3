@@ -12,8 +12,6 @@ class UserService
 
     public static function getTokenFromAuth(Request $request)
     {
-        // REVIEW - Tip - Tu by možno bolo lepšie použiť ->bearerToken(), ale nie som si istý môžeš vyskúšať
-        // $auth_header = $request->bearerToken(); -> nefunguje mi
         $auth_header = $request->header('Authorization');
 
         if ($auth_header && str_starts_with($auth_header, 'Bearer ')) {
